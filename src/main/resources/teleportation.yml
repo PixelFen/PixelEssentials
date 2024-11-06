@@ -1,0 +1,38 @@
+# Customize the /back command on whether it'll let you tp on back or on teleport or not.
+back:
+  enabled: true
+
+  # Setting use-permissions to true will make the other two options useless.
+  # These are the following permission nodes:
+  #  /backL pess.back.command
+  #  on-death: pess.back.death
+  #  on-teleport: pess.back.teleport
+  use-permissions: false
+
+  on-death: true
+  on-teleport: true
+
+  # How long until the player can execute /back
+  cooldown: 60
+
+# This lets players set teleport points they can travel to at will.
+# To do sethome limits, use your permissions manager with the following permission node:
+#  pess.homes.limit.<amount>
+
+homes:
+  enabled: true
+  # When doing /home bed, the player is teleported to their last sleep point.
+  use-bed: false
+  # When doing /sethome with the name of an existing home, this will prompt them for 10 seconds
+  # on whether they wanna overwrite their sethome.
+  overwrite-confirmation: true
+
+
+tp:
+  enabled: true
+  # How long until the player can execute a /tp command
+  cooldown: 60
+  # How long until their /tpask request expires
+  ask-cooldown: 120
+  # Allows the ability to teleport to players even if they went offline.
+  allow-offline: true

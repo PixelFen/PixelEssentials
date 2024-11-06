@@ -1,0 +1,16 @@
+name: PixelEssentials
+version: 'SNAPSHOT-1.0.0-b'
+main: org.pixeldev.pixelEssentials.PixelEssentials
+api-version: '1.20'
+prefix: PixelEssentials
+load: STARTUP
+authors: [ PixelFen ]
+description: Essential stuff everyone needs.
+softdepend: ["PlaceholderAPI"]
+commands:
+  motd:
+    description: Displays the MOTD of your server.
+  reloadconfig:
+    description: Reloads the PixelEssentials Config.
+  version:
+    description: Gets the version of PixelEssentials.

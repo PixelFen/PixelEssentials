@@ -1,0 +1,18 @@
+# What the name of your currency is. Set it to '' to disable the name.
+# Default value: 'dollar'
+currency-name: 'dollar'
+
+# What symbol you want to appear when using commands like /balance.
+# Default value: '$'
+currency-symbol: '$'
+
+# The max and minimum amounts a player can have.
+# Default values:
+#  min: 0
+#  max: 0
+amounts:
+  min: 0
+  max: 10000000000000
+
+# The minimum amount a player can /pay
+minimum-pay: 1

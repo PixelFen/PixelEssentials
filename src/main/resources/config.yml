@@ -1,0 +1,45 @@
+
+# DO NOT TOUCH THIS.
+# This determines what version of config you have.
+configver: 1
+
+# Modules
+# CHANGING THESE MAY REQUIRE A SERVER RESTART!
+#
+# Modules are aspects of PixelEssentials you can toggle.
+# So if you prefer another economy plugin, or another chat system...
+# You can disable those aspects of the plugin here.
+#
+# This makes it so you just need one plugin and not need to
+# install any additional addons.
+#
+# Available modules:
+#  Economy - The currency system of the plugin.
+#  better-whitelist - A better whitelist system that supports IP whitelisting.
+#  Chat - Chat formatting and channels.
+#  Teleportation - Teleportation related things like homes, warp, tpask, etc.
+#  Moderation - vanish, invsee, and other moderation related items.
+#  Utils - god, gamemode, xp, ping, powertool, nicks, etc.
+#  Random - ptime, skull, and other random or fun things.
+
+
+# Setting any of these values to 'false' will disable them entirely.
+# Consider checking their respective configs so you can disable or modify
+# them to your liking.
+modules:
+  economy: true
+  better-whitelist: true
+  chat: true
+  teleportation: true
+  moderation: true
+  utils: true
+  random: true
+
+# The prefix behind every command.
+# Set to '' to disable.
+prefix: "&6&lPE &7> &r"
+
+# Whether to send the MOTD message on join.
+sendmotd: true
+# How many seconds to wait before sending the MOTD.
+motddelay: 2

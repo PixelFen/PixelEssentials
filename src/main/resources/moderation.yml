@@ -1,0 +1,3 @@
+# If you just want a simple /ban system without anything fancy like logging and such
+# feel free to set this to 'true'.
+usesimple: false
