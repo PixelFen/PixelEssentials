@@ -17,7 +17,7 @@ public class ReloadConfigs implements CommandExecutor {
             // For now, we are gonna reload the default config.
             PixelEssentials instance = PixelEssentials.getInstance();
             instance.reloadConfig();
-            instance.loadConfig();
+            instance.loadConfigs();
             commandSender.sendMessage("Config reloaded.");
         } else {
             commandSender.sendMessage(Colorize.colorize("<red>You require the</red> <gold>pes.reload</gold> <red>permission to use this command!"));
