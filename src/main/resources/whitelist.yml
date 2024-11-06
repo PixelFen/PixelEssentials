@@ -1,0 +1,9 @@
+# Whitelist for IPs and users.
+
+message: "You are not whitelisted on this server."
+
+ips:
+    - 127.0.0.1
+
+users:
+  - PixelFen

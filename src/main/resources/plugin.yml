@@ -14,3 +14,8 @@ commands:
     description: Reloads the PixelEssentials Config.
   version:
     description: Gets the version of PixelEssentials.
+  pes:
+    description: Base command for PixelEssentials.
+  whitelist:
+    description: Whitelist command for PixelEssentials.
+    usage: /whitelist <add|remove|list|on|off> [player]
