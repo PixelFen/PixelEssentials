@@ -1,9 +1,10 @@
 # Whitelist for IPs and users.
 
-message: "You are not whitelisted on this server."
+# Supports MiniMessage formatting codes and ampersand (&) codes
+message: "<red>You are not whitelisted on this server.</red>"
 
-ips:
-    - 127.0.0.1
-
-users:
-  - PixelFen
+# We suggest using /whitelist add <player> to add a player to the whitelist.
+ips: []
+# If you really want to do it manually, be sure the users here are UUID based.
+# If this server is cracked (which we suggest you DON'T do that) you can use basic player names.
+users: []
