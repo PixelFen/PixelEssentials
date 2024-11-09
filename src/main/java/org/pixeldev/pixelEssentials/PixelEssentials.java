@@ -3,6 +3,7 @@ package org.pixeldev.pixelEssentials;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.pixeldev.pixelEssentials.betterwhitelist.commands.WhitelistCommand;
 import org.pixeldev.pixelEssentials.commands.MainCmds;
+import org.pixeldev.pixelEssentials.commands.etc.Fly;
 import org.pixeldev.pixelEssentials.commands.serverAdmin.ReloadConfigs;
 import org.pixeldev.pixelEssentials.commands.serverAdmin.VersionCmd;
 
@@ -85,6 +86,7 @@ public final class PixelEssentials extends JavaPlugin {
         this.getCommand("motd").setExecutor((new Motd()));
         this.getCommand("reloadConfig").setExecutor((new ReloadConfigs()));
         this.getCommand("version").setExecutor((new VersionCmd()));
+        this.getCommand("fly").setExecutor((new Fly()));
 
         this.getCommand("pes").setExecutor((new MainCmds()));
 
