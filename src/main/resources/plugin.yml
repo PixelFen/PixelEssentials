@@ -19,3 +19,7 @@ commands:
   whitelist:
     description: Whitelist command for PixelEssentials.
     usage: /whitelist <add|remove|list|on|off> [player]
+  fly:
+    description: Allows flight
+    permission: pes.fly
+    usage: /fly [user] [on|off]
