@@ -31,45 +31,15 @@ public final class PixelEssentials extends JavaPlugin {
         return 1;
     }
 
-    public static File whitelistCFile;
-    private FileConfiguration whitelistConfig;
 
-    private void createWhitelistConfig() {
-        whitelistCFile = new File(getDataFolder(), "whitelist.yml");
-
-        if (!whitelistCFile.exists()) {
-            whitelistCFile.getParentFile().mkdirs();
-            saveResource("whitelist.yml", false);
-        }
-    }
-
-    public FileConfiguration getWhitelistConfig() {
-        return this.whitelistConfig;
-    }
-
-    // This method saves the whitelist config
-    public void saveWhitelistConfig() {
-        try {
-            getWhitelistConfig().save(whitelistCFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void loadConfigs(){
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();;
 
-        createWhitelistConfig();
-        this.whitelistConfig = YamlConfiguration.loadConfiguration(whitelistCFile);
-
-
 
     }
-
-
-
-
+    
     @Override
     public void onEnable() {
         // Plugin startup logic
