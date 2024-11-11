@@ -12,3 +12,6 @@ the already great EssentialsX plugin.
 So I don't suggest downloading and building it or adding to your server.  
 If the plugin reaches alpha or beta state, **use with caution so your server won't be broken!**
 
+There is also a chance that my code might not look neat enough or have points that doens't follow Java's formatting rules.  
+So bare with my code. As long as it works and doesn't cause issues, it's fine.  
+Any issues that arise I will fix. Be sure to create a new issue if something is wrong!
