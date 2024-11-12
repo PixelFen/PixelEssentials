@@ -40,6 +40,10 @@ public class WhitelistCommand implements CommandExecutor {
         }
 
         else if (args[0].toLowerCase().matches("off")) {
+            if (!sender.hasPermission("pes.whitelist.toggle")) {
+                sender.sendMessage(Colorize.colorize("&c&l(!) &r&cYou do not have permission to use this command!"));
+            }
+
             // Checking if Whitelister.whitelistEnabled is true.
             if (!Whitelister.whitelistEnabled) {
                 sender.sendMessage(Colorize.colorize("&c&l(!) &r&cThe whitelist is already disabled!"));
