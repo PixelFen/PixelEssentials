@@ -43,3 +43,5 @@ prefix: "&6&lPE &7> &r"
 sendmotd: true
 # How many seconds to wait before sending the MOTD.
 motddelay: 2
+
+whitelist-message: "&cYou are not whitelisted on this server!"
