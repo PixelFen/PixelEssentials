@@ -1,7 +1,9 @@
 package org.pixeldev.pixelEssentials;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.pixeldev.pixelEssentials.betterwhitelist.Whitelister;
 import org.pixeldev.pixelEssentials.betterwhitelist.commands.WhitelistCommand;
+import org.pixeldev.pixelEssentials.betterwhitelist.events.PreMemberJoin;
 import org.pixeldev.pixelEssentials.commands.MainCmds;
 import org.pixeldev.pixelEssentials.commands.etc.Fly;
 import org.pixeldev.pixelEssentials.commands.serverAdmin.ReloadConfigs;
@@ -14,6 +16,7 @@ import org.pixeldev.pixelEssentials.commands.Motd;
 import org.pixeldev.pixelEssentials.events.MemberJoin;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.pixeldev.pixelEssentials.utils.ConfigValidation.updateConfig;
 
@@ -39,7 +42,13 @@ public final class PixelEssentials extends JavaPlugin {
 
 
     }
-    
+
+    // System to autosave whitelist every 30 minutes
+    public void autoSaveWhitelist() throws IOException {
+        Whitelister.saveWhitelist();
+
+    }
+
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -47,9 +56,26 @@ public final class PixelEssentials extends JavaPlugin {
 
         loadConfigs();
         FileConfiguration config = getConfig();
+        // Loading our whitelist.json to cache
+        try {
+            Whitelister.loadWhitelist();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         this.getLogger().info("Checking to see if there are any updates to the config...");
         updateConfig();
+
+        // Auto whitelist saver
+        // Scheduler to run every 30 minutes and also check for IOExceptions
+        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            try {
+                autoSaveWhitelist();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }, 1800, 1800);
+        this.getLogger().info("Started autosave task for whitelist.json");
 
 
 
@@ -63,11 +89,17 @@ public final class PixelEssentials extends JavaPlugin {
         this.getCommand("whitelist").setExecutor((new WhitelistCommand()));
 
         Bukkit.getPluginManager().registerEvents(new MemberJoin(), this);
+        Bukkit.getPluginManager().registerEvents(new PreMemberJoin(), this);
 
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Saving our whitelist
+        try {
+            Whitelister.saveWhitelist();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
