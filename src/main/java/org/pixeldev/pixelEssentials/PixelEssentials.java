@@ -14,6 +14,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pixeldev.pixelEssentials.commands.Motd;
 import org.pixeldev.pixelEssentials.events.MemberJoin;
+import org.pixeldev.pixelEssentials.teleportation.commands.SetSpawn;
+import org.pixeldev.pixelEssentials.teleportation.commands.Spawn;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,6 +89,9 @@ public final class PixelEssentials extends JavaPlugin {
         this.getCommand("pes").setExecutor((new MainCmds()));
 
         this.getCommand("whitelist").setExecutor((new WhitelistCommand()));
+
+        this.getCommand("spawn").setExecutor((new Spawn()));
+        this.getCommand("setspawn").setExecutor((new SetSpawn()));
 
         Bukkit.getPluginManager().registerEvents(new MemberJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PreMemberJoin(), this);

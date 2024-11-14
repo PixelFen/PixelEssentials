@@ -23,3 +23,11 @@ commands:
     description: Allows flight
     permission: pes.fly
     usage: /fly [user] [on|off]
+  spawn:
+    description: "Teleports to the server spawn"
+    permission: pes.spawn
+    usage: /spawn
+  setspawn:
+    description: "Sets the server spawn"
+    permission: pes.setspawn
+    usage: /setspawn
