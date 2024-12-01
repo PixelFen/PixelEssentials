@@ -24,8 +24,12 @@ homes:
   # When doing /home bed, the player is teleported to their last sleep point.
   use-bed: false
   # When doing /sethome with the name of an existing home, this will prompt them for 10 seconds
-  # on whether they wanna overwrite their sethome.
+  # on whether they want to overwrite their sethome.
   overwrite-confirmation: true
+  # How many homes a player can set at once.
+  # By using "pes.homes.limit.<amount>", you can give a custom limit. Useful for ranks and such.
+  # Use of "pes.homes.unlimited" will remove the limit entirely.
+  max-homes: 1
 
 
 tp:

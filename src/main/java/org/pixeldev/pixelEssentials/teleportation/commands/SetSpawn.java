@@ -18,7 +18,7 @@ public class SetSpawn implements CommandExecutor {
             GetData.y = player.getLocation().getY();
             GetData.z = player.getLocation().getZ();
             GetData.world = player.getLocation().getWorld().getName();
-            commandSender.sendMessage("Spawn has been updated.");
+            commandSender.sendMessage("&a&l(✔) &r&aSpawn has been updated.");
             GetData.saveTPData();
         }
 
