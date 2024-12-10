@@ -14,8 +14,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.pixeldev.pixelEssentials.commands.Motd;
 import org.pixeldev.pixelEssentials.events.MemberJoin;
-import org.pixeldev.pixelEssentials.teleportation.commands.SetSpawn;
-import org.pixeldev.pixelEssentials.teleportation.commands.Spawn;
+import org.pixeldev.pixelEssentials.teleportation.commands.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,12 +35,16 @@ public final class PixelEssentials extends JavaPlugin {
         return 1;
     }
 
+    // Player data storage yml
+    private File playerData;
+    private FileConfiguration playerDataYml;
+
+
 
 
     public void loadConfigs(){
         this.getConfig().options().copyDefaults(true);
-        this.saveConfig();;
-
+        this.saveConfig();
 
     }
 
@@ -51,6 +54,29 @@ public final class PixelEssentials extends JavaPlugin {
 
     }
 
+    private void createPlayerData() {
+        playerData = new File(getDataFolder(), "playerdata.yml");
+        if (!playerData.getParentFile().exists()) {
+            playerData.getParentFile().mkdirs();
+        }
+        playerDataYml = YamlConfiguration.loadConfiguration(playerData);
+    }
+
+    // Saving playerdata.yml
+    public void savePlayerData() {
+        try {
+            playerDataYml.save(playerData);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public FileConfiguration PlayerData() {
+        return this.playerDataYml;
+    }
+
+
     @Override
     public void onEnable() {
         // Plugin startup logic
@@ -58,6 +84,13 @@ public final class PixelEssentials extends JavaPlugin {
 
         loadConfigs();
         FileConfiguration config = getConfig();
+
+        createPlayerData();
+
+
+
+
+
         // Loading our whitelist.json to cache
         try {
             Whitelister.loadWhitelist();
@@ -66,7 +99,7 @@ public final class PixelEssentials extends JavaPlugin {
         }
 
         this.getLogger().info("Checking to see if there are any updates to the config...");
-        updateConfig();
+        //updateConfig();
 
         // Auto whitelist saver
         // Scheduler to run every 30 minutes and also check for IOExceptions
@@ -92,6 +125,10 @@ public final class PixelEssentials extends JavaPlugin {
 
         this.getCommand("spawn").setExecutor((new Spawn()));
         this.getCommand("setspawn").setExecutor((new SetSpawn()));
+
+        this.getCommand("sethome").setExecutor((new SetHome()));
+        this.getCommand("home").setExecutor((new GoHome()));
+        this.getCommand("delhome").setExecutor((new DelHome()));
 
         Bukkit.getPluginManager().registerEvents(new MemberJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PreMemberJoin(), this);

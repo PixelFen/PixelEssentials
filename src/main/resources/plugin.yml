@@ -31,3 +31,16 @@ commands:
     description: "Sets the server spawn"
     permission: pes.setspawn
     usage: /setspawn
+
+  sethome:
+    description: "Sets a home"
+    permission: pes.homes.set
+    usage: /sethome <name>
+  home:
+    description: "Teleports to a home"
+    permission: pes.homes.use
+    usage: /home <name>
+  delhome:
+    description: "Deletes a home"
+    permission: pes.homes.del
+    usage: /delhome <name>
