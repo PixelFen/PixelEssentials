@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'com.gradleup.shadow' version '9.0.0-beta4'
+
 }
 
 group = 'org.pixeldev'
@@ -22,12 +24,24 @@ repositories {
 }
 
 dependencies {
+    // Adventure (minimessage)
     implementation("net.kyori:adventure-api:4.14.0")
     implementation("net.kyori:adventure-text-minimessage:4.14.0")
     implementation("net.kyori:adventure-text-serializer-legacy:4.15.0")
+
+    // JSON
     implementation 'com.google.code.gson:gson:2.11.0'
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+
+    // PlaceholderAPI
     compileOnly 'me.clip:placeholderapi:2.11.6'
+
+    // Paper
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+
+    // JDA (Discord bots)
+    implementation("net.dv8tion:JDA:5.2.2")
+
+
 }
 
 def targetJavaVersion = 21
@@ -56,3 +70,16 @@ processResources {
         expand props
     }
 }
+
+shadowJar {
+    archiveBaseName.set('PixelEssentials')
+    archiveVersion.set('1.0.0-ba')
+    archiveClassifier.set('')
+    // Relocating jda
+    relocate 'net.dv8tion.jda', 'org.pixeldev.pixelEssentials.shaded.jda'
+}
+
+build {
+    dependsOn shadowJar
+}
+
