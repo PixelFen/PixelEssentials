@@ -10,6 +10,9 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.pixeldev.pixelEssentials.PixelEssentials;
 import org.pixeldev.pixelEssentials.utils.Colorize;
+import org.pixeldev.pixelEssentials.utils.TPData;
+
+import java.util.Map;
 
 public class GoHome implements CommandExecutor {
     @Override
@@ -20,23 +23,26 @@ public class GoHome implements CommandExecutor {
                 Player player = (Player) commandSender;
 
                 // Making sure the home exists.
-                FileConfiguration playerdata = pi.PlayerData();
-                if (!playerdata.contains(player.getUniqueId().toString() + ".homes." + args[0])) {
+
+                Map<String, Object> homes = TPData.GetHome(player.getUniqueId(), args[0]);
+
+                if (homes == null) {
                     player.sendMessage(Colorize.colorize("&e&l[!] &r&cHey! This home doesn't exist. Use &6/home list &cto see all homes!"));
                     return true;
                 }
 
                 // Teleporting the player to the home.
-                double x = playerdata.getDouble(player.getUniqueId().toString() + ".homes." + args[0] + ".x");
-                double y = playerdata.getDouble(player.getUniqueId().toString() + ".homes." + args[0] + ".y");
-                double z = playerdata.getDouble(player.getUniqueId().toString() + ".homes." + args[0] + ".z");
-                String world = playerdata.getString(player.getUniqueId().toString() + ".homes." + args[0] + ".world");
-                float yaw = (float) playerdata.getDouble(player.getUniqueId().toString() + ".homes." + args[0] + ".yaw");
-                float pitch = (float) playerdata.getDouble(player.getUniqueId().toString() + ".homes." + args[0] + ".pitch");
+                double x = (double) homes.get("x");
+                double y = (double) homes.get("y");
+                double z = (double) homes.get("z");
+                String world = (String) homes.get("world");
+                float yaw = (float) homes.get("yaw");
+                float pitch = (float) homes.get("pitch");
                 World worldy = player.getServer().getWorld(world);
+
                 Location loc = new Location(worldy, x, y, z, yaw, pitch);
                 player.teleport(loc);
-                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aWelcome home to &6" + args[0] + "&r&a."));
+                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aTeleported to &6" + args[0] + "&r&a."));
 
 
 

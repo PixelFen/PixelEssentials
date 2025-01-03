@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.pixeldev.pixelEssentials.PixelEssentials;
 import org.pixeldev.pixelEssentials.teleportation.data.PlayerHomes;
 import org.pixeldev.pixelEssentials.utils.Colorize;
+import org.pixeldev.pixelEssentials.utils.TPData;
 
 import java.util.UUID;
 
@@ -27,24 +28,50 @@ public class SetHome implements CommandExecutor {
                 FileConfiguration playerdata = pi.PlayerData();
                 UUID uuid = player.getUniqueId();
                 if (playerdata.contains(uuid.toString() + ".homes." + args[0])) {
-                    if (!args[1].toLowerCase().equals("overwrite")) {
-                        player.sendMessage(Colorize.colorize("&e&l[!] &r&cHey! This home exists already. Use &6/home " + args[0] + " overwrite &cto teleport there!"));
-                        return true;
+                    // Checking if args[1] exists and that it's "overwrite"
+                    if (args.length > 1) {
+                        if (args[1].equalsIgnoreCase("overwrite")) {
+                            // Overwriting home
+                            boolean result = TPData.saveHome(
+                                    uuid,
+                                    args[0],
+                                    player.getLocation().getX(),
+                                    player.getLocation().getY(),
+                                    player.getLocation().getZ(),
+                                    player.getWorld().getName(),
+                                    player.getLocation().getYaw(),
+                                    player.getLocation().getPitch()
+                            );
+                            if (!result) {
+                                player.sendMessage(Colorize.colorize("&c&l(!) &r&cSave failure. Please contact an admin."));
+                                return true;
+                            }
+                            player.sendMessage(Colorize.colorize("&a&l(✔) &r&aHome " + args[0] + " has been overwritten."));
+                        } else {
+                            player.sendMessage(Colorize.colorize("&e&l[!] &r&bHome " + args[0] + " already exists! Use &6/sethome " + args[0] + " overwrite &bto overwrite it."));
+                        }
                     }
 
-                } if (!playerdata.contains(uuid.toString() + ".homes." + args[0]) || args[1].toLowerCase().equals("overwrite")) {
-                    // Adding home to playerdata.yml
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".world", player.getWorld().getName());
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".x", player.getLocation().getX());
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".y", player.getLocation().getY());
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".z", player.getLocation().getZ());
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".yaw", player.getLocation().getYaw());
-                    playerdata.set(uuid.toString() + ".homes." + args[0] + ".pitch", player.getLocation().getPitch());
 
+                } if (!playerdata.contains(uuid.toString() + ".homes." + args[0])) {
+                    // Adding home to playerdata.yml
                     // If I'm being honest, idk wtf I'm doing.
 
-                    pi.savePlayerData();
+                    boolean result =TPData.saveHome(
+                            uuid,
+                            args[0],
+                            player.getLocation().getX(),
+                            player.getLocation().getY(),
+                            player.getLocation().getZ(),
+                            player.getWorld().getName(),
+                            player.getLocation().getYaw(),
+                            player.getLocation().getPitch()
+                    );
 
+                    if (!result) {
+                        player.sendMessage(Colorize.colorize("&c&l(!) &r&cSave failure. Please contact an admin."));
+                        return true;
+                    }
                     player.sendMessage(Colorize.colorize("&a&l(✔) &r&aHome " + args[0] + " has been set to your location."));
                 }
             } else {
