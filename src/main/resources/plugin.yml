@@ -44,3 +44,9 @@ commands:
     description: "Deletes a home"
     permission: pes.homes.del
     usage: /delhome <name>
+
+
+  discord:
+    description: "Discord stuff"
+    permission: pes.discord
+    usage: /discord <link|unlink|sync|reload>
