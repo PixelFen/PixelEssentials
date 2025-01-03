@@ -40,9 +40,54 @@ modules:
 # Set to '' to disable.
 prefix: "&6&lPE &7> &r"
 
+
+# Storage options
+# Whether you want to use a SQL database or a yaml file.
+# Available options:
+#  yaml - Saves to data/x.yml.
+#  SQL - SQL database such as MySQL, MariaDB, etc.
+# If anything else is put, it will default to yaml.
+#
+# CHANGING THIS WILL REQUIRE A SERVER RESTART.
+# Use /pes migrate to copy your data over.
+storage: 'yaml'
+
+# SQL database options
+#
+# host: The host address of the database.
+# port: The port of the database.
+# user: The username of the database.
+# password: The password of the database.
+#
+# Anything PixelEssentials will have PES in the prefix of the tables.
+# While we don't 100% suggest modifying the data yourself, it's useful to know.
+# If we can't connect, anything relating to save data WILL error.
+
+SQL:
+  host: '127.0.0.1'
+  port: 3306
+  user: 'username'
+  password: 'password'
+  database: "server"
+
+
 # Whether to send the MOTD message on join.
 sendmotd: true
 # How many seconds to wait before sending the MOTD.
 motddelay: 2
 
 whitelist-message: "&cYou are not whitelisted on this server!"
+
+# Basic Discord options.
+# Other options are in discord.yml.
+#
+# token: The Discord bot token. - https://discord.com/developers
+#  DO NOT SHARE THIS TOKEN WITH ANYONE.
+#  Be sure you trust the people who have access to your server files!
+#
+# moderationlogs: The channel ID to send moderation logs to.
+
+discord:
+  token: ''
+  chattest: ''  # This is a test for a chat bridge.
+  moderationlogs: ''
