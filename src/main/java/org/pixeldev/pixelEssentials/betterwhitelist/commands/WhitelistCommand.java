@@ -56,6 +56,10 @@ public class WhitelistCommand implements CommandExecutor {
         }
 
         else if (args[0].toLowerCase().matches("on")) {
+
+            if (!sender.hasPermission("pes.whitelist.toggle")) {
+                sender.sendMessage(Colorize.colorize("&c&l(!) &r&cYou do not have permission to use this command!"));
+            }
             // Checking if Whitelister.whitelistEnabled is false.
             if (Whitelister.whitelistEnabled) {
                 sender.sendMessage(Colorize.colorize("&c&l(!) &r&cThe whitelist is already enabled!"));
@@ -69,6 +73,9 @@ public class WhitelistCommand implements CommandExecutor {
 
         // Whitelist add
         else if (args[0].toLowerCase().matches("add")) {
+            if (!sender.hasPermission("pes.whitelist.add")) {
+                sender.sendMessage(Colorize.colorize("&c&l(!) &r&cYou do not have permission to use this command!"));
+            }
             // Adding user to our whitelist hashmap
 
             if (args.length < 2) {
@@ -118,6 +125,9 @@ public class WhitelistCommand implements CommandExecutor {
 
         // Whitelist remove
         else if (args[0].toLowerCase().matches("remove")) {
+            if (!sender.hasPermission("pes.whitelist.remove")) {
+                sender.sendMessage(Colorize.colorize("&c&l(!) &r&cYou do not have permission to use this command!"));
+            }
             // Removing user from our whitelist hashmap
 
             if (args.length < 2) {
@@ -167,7 +177,9 @@ public class WhitelistCommand implements CommandExecutor {
 
 
         else if (args[0].toLowerCase().matches("list")) {
-
+            if (!sender.hasPermission("pes.whitelist.list")) {
+                sender.sendMessage(Colorize.colorize("&c&l(!) &r&cYou do not have permission to use this command!"));
+            }
 
             Boolean wl = Whitelister.whitelistEnabled;
             String wlValue;
