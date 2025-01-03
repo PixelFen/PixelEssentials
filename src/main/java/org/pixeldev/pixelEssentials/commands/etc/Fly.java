@@ -14,10 +14,10 @@ public class Fly implements CommandExecutor {
         if (sender.hasPermission("pes.fly")) {
             if (player.getAllowFlight()) {
                 player.setAllowFlight(false);
-                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aFlight has been &c&ldisabled&a."));
+                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aFlight has been &c&ldisabled&a!"));
             } else {
                 player.setAllowFlight(true);
-                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aFlight has been &lenabled&r&a,"));
+                player.sendMessage(Colorize.colorize("&a&l(✔) &r&aFlight has been &lenabled&r&a!"));
             }
         }
         return true;

@@ -23,7 +23,7 @@ public class Motd implements CommandExecutor {
         Player player = (Player) commandSender;
 
         try {
-            File motdTxT = new File(instance.getDataFolder() + "\\motd.txt");
+            File motdTxT = new File(instance.getDataFolder(), "motd.txt");
             Scanner glasses = new Scanner(motdTxT);
             commandSender.sendMessage(Colorize.colorize("&6-- Previewing motd.txt file --"));
             while (glasses.hasNextLine()) {
@@ -37,9 +37,9 @@ public class Motd implements CommandExecutor {
         } catch (FileNotFoundException e) {
             commandSender.sendMessage("No MOTD exists. Creating one for you...");
             try {
-                File newBoi = new File(instance.getDataFolder() + "\\motd.txt");
+                File newBoi = new File(instance.getDataFolder() + "motd.txt");
                 newBoi.createNewFile();
-                FileWriter pencil = new FileWriter(instance.getDataFolder() + "\\motd.txt");
+                FileWriter pencil = new FileWriter(instance.getDataFolder() + "motd.txt");
 
                 pencil.write("Welcome to the server, %player_name%!");
                 pencil.close();

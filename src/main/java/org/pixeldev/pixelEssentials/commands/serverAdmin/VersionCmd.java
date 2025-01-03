@@ -11,8 +11,8 @@ public class VersionCmd implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        String versionStr = Colorize.colorize("&6You are currently running version: &c" + PixelEssentials.getInstance().getDescription().getVersion() + " &6of PixelEssesntials");
-        String vertwo = Colorize.colorize("&6Developed with &c♥ &6by PixelFen");
+        String versionStr = Colorize.colorize("&aYou are running version: &c" + PixelEssentials.getInstance().getDescription().getVersion() + " &aof PixelEssesntials");
+        String vertwo = Colorize.colorize("&dDeveloped with &c♥ &dby &cPixelFen");
         commandSender.sendMessage(versionStr);
         commandSender.sendMessage(vertwo);
         return true;
